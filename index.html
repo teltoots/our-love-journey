@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Journey ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Itim&display=swap" rel="stylesheet">
+    <style>
+    p {text-align: center;}
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #ff85c2;
+            --accent-color: #c71585;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Itim', cursive;
+            overflow: hidden;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            display: none;
+            padding: 2rem;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .active-screen {
+            display: block;
+            z-index: 2;
+        }
+
+        /* Opening Screen */
+        #opening-screen {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .opening-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .opening-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .start-button {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            background: white;
+            color: #ff1493;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        /* Journey Screen */
+        #journey-screen {
+            background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+        }
+
+        .journey-map {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .journey-stop {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .journey-stop.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .journey-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .journey-image:hover {
+            transform: scale(1.03);
+        }
+
+        .navigation-button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        /* Valentine Screen */
+        #valentine-screen {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .final-question {
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .journey-map {
+                padding: 1rem;
+            }
+            
+            .journey-stop {
+                margin: 2rem 0;
+                padding: 1.5rem;
+            }
+            
+            .final-question {
+                font-size: 2rem;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .opening-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. Opening Screen -->
+    <div class="screen active-screen" id="opening-screen">
+        <div class="opening-content">
+            <h1 class="opening-title">Our Journey So Far...</h1>
+            <button class="start-button" onclick="startJourney()">Begin Our Story ❤️</button>
+        </div>
+    </div>
+
+    <!-- 2. Journey Screen -->
+    <div class="screen" id="journey-screen">
+        <div class="journey-map">
+            <!-- Stop 1: First Day We Met -->
+            <div class="journey-stop active" id="stop1">
+                <h3>🌠 The Day Destiny Introduced Us</h3>
+                <p>February 13th, 2022 - When our story began...</p>
+                <div class="image-grid">
+                    <img src="meet1.jpg" class="journey-image" alt="Our first meeting">
+                    <img src="meet2.gif" class="journey-image" alt="First smiles together">
+                </div>
+                <p>Hindi pa rin ako makapaniwala na makilala kita sa Bumble out of all places. Destiny did the magic talaga 💗</p>
+                <button class="navigation-button" data-next="stop2">Relive Our Beginning →</button>
+            </div>
+
+            <!-- Stop 2: First Time Meeting -->
+            <div class="journey-stop" id="stop2">
+                <h3>💞 Our First Real Connection</h3>
+                <p>That magical day when we...</p>
+                <div class="image-grid">
+                    <img src="date1.jpg" class="journey-image" alt="First proper date">
+                    <img src="date2.gif" class="journey-image" alt="Nervous excitement">
+                </div>
+                <p>BEST DAAAAY FR!! I'm glad na we got comfortable sa isa't isa plus may forehead kiss pa, and pati yung first kiss natin na di ko makakalimutan. EVER.🥰</p>
+                <button class="navigation-button" data-next="stop3">Continue Our Story →</button>
+            </div>
+
+            <!-- Stop 3: Meeting Family -->
+            <div class="journey-stop" id="stop3">
+                <h3>👨👩👧👦 Becoming Part of Your World</h3>
+                <p>The day I met your family...</p>
+                <div class="image-grid">
+                    <img src="family1.jpg" class="journey-image" alt="Family dinner">
+                    <img src="family2.jpg" class="journey-image" alt="Family moments">
+                    <img src="family3.jpg" class="journey-image" alt="Family moments">
+                </div>
+                <p>Grateful talaga ako na makilala ko family mo, and mapanood din yung first volleyball game mo 💗</p>
+                <button class="navigation-button" data-next="stop4">Next Chapter →</button>
+            </div>
+
+            <!-- Stop 4: Errand Dates -->
+            <div class="journey-stop" id="stop4">
+                <h3>🛒 Our Simple Perfect Moments</h3>
+                <p>Errand runs turned adventures:</p>
+                <div class="image-grid">
+                    <img src="errand1.jpg" class="journey-image" alt="Supermarket laughs">
+                    <img src="errand2.jpg" class="journey-image" alt="Daily moments">
+                    <img src="errand4.jpg" class="journey-image" alt="Supermarket laughs">
+                </div>
+                <p>Simple errand dates, but the most memorable.😍</p>
+                <button class="navigation-button" data-next="stop5">Next Memory →</button>
+            </div>
+
+            <!-- Stop 5: Birthdays -->
+            <div class="journey-stop" id="stop5">
+                <h3>🎂 Celebrating Us</h3>
+                <p>Your special day and mine:</p>
+                <div class="image-grid">
+                    <img src="bday1.jpg" class="journey-image" alt="Your birthday">
+                    <img src="bday2.jpg" class="journey-image" alt="My birthday">
+                </div>
+                <p>Our first birthdays together! More birthdays to come pa with you 😘</p>
+                <button class="navigation-button" data-next="stop6">Continue Journey →</button>
+            </div>
+
+            <!-- Stop 6: USA Departure -->
+            <div class="journey-stop" id="stop6">
+                <h3>✈️ Bittersweet Goodbyes</h3>
+                <p>When you left for your dreams...</p>
+                <div class="image-grid">
+                    <img src="departure1.jpg" class="journey-image" alt="Airport goodbye">
+                    <img src="departure2.jpg" class="journey-image" alt="Last embrace">
+                </div>
+                <p>Saddest day of mi life, but I know naman na we'll make it through despite the distance. 💕</p>
+                <button class="navigation-button" data-next="stop7">Next Chapter →</button>
+            </div>
+
+            <!-- Stop 7: First Call After 3 Months -->
+            <div class="journey-stop" id="stop7">
+                <h3>📞 Call That Melted the Distance</h3>
+                <p>That first call after 3 months...</p>
+                <div class="image-grid">
+                    <img src="call1.jpg" class="journey-image" alt="Call screenshot">
+                    <img src="call2.gif" class="journey-image" alt="Happy tears">
+                </div>
+                <p>Worth lahat ng paghihintay natin after of countless notes sa isa't isa, and pag woworry. We reconnected again. ❣️</p>
+                <button class="navigation-button" data-next="stop8">Next Memory →</button>
+            </div>
+
+            <!-- Stop 8: First Holidays Apart -->
+            <div class="journey-stop" id="stop8">
+                <h3>🎄 Christmas Stars Across Oceans</h3>
+                <p>Our first Christmas and New Year...</p>
+                <div class="image-grid">
+                    <img src="xmas1.jpg" class="journey-image" alt="Christmas call">
+                    <img src="ny1.gif" class="journey-image" alt="New Year wishes">
+                </div>
+                <p>Our first MISMAS AND NEW YEAR!!! Wala akong pic but this is our first of our many mismas and new year. 💕</p>
+                <button class="navigation-button" data-next="stop9">Next Stop →</button>
+            </div>
+
+            <!-- Stop 9: First Anniversary -->
+            <div class="journey-stop" id="stop9">
+                <h3>🥂 365 Days of Us</h3>
+                <p>Celebrating one year of...</p>
+                <div class="image-grid">
+                    <img src="anniv1.jpg" class="journey-image" alt="Anniversary celebration">
+                    <img src="anniv2.jpg" class="journey-image" alt="Virtual date">
+                </div>
+                <p>Our first anniversary of us meeting! 💕</p>
+                <button class="navigation-button" data-next="stop10">Continue Journey →</button>
+            </div>
+
+            <!-- Stop 10: Canada Departure -->
+            <div class="journey-stop" id="stop10">
+                <h3>❄️ New Chapter for me</h3>
+                <p>When I left for Canada...</p>
+                <div class="image-grid">
+                    <img src="canada1.jpg" class="journey-image" alt="Airport moment">
+                    <img src="canada2.gif" class="journey-image" alt="Promise ring">
+                </div>
+                <p>I'm excited for the new chapter of my life and I'm excited to see you again. Soon. 💕</p>
+                <button class="navigation-button" data-next="stop11">Next Chapter →</button>
+            </div>
+
+            <!-- Stop 11: Second Anniversary -->
+            <div class="journey-stop" id="stop11">
+                <h3>💖 Two Years Stronger</h3>
+                <p>730 days of meeting you...</p>
+                <div class="image-grid">
+                    <img src="anniv2-1.jpg" class="journey-image" alt="Celebration photo">
+                    <img src="anniv2-2.gif" class="journey-image" alt="Love notes">
+                </div>
+                <p>Our second anniversary of us meeting! (Sorry for the pics kasi eto lang natake ko hehe) 💕</p>
+                <button class="navigation-button" data-next="stop12">Next Memory →</button>
+            </div>
+
+            <!-- Stop 12: College & Achievements -->
+            <div class="journey-stop" id="stop12">
+                <h3>🎓 Your Shining Moments</h3>
+                <p>First car and college journey:</p>
+                <div class="image-grid">
+                    <img src="car1.jpg" class="journey-image" alt="New car">
+                    <img src="college1.jpg" class="journey-image" alt="Campus days">
+                </div>
+                <p>I'm so proud of you for all your achievements and I'm so excited to see you grow even more. 💕</p>
+                <button class="navigation-button" data-next="stop13">Next Chapter →</button>
+            </div>
+
+            <!-- Stop 13: Online Dates -->
+            <div class="journey-stop" id="stop13">
+                <h3>💻 Love Beyond Borders</h3>
+                <p>Our virtual adventures:</p>
+                <div class="image-grid">
+                    <img src="online1.jpg" class="journey-image" alt="Movie nights">
+                    <img src="online2.jpg" class="journey-image" alt="Movie nights">
+                    <img src="online3.jpg" class="journey-image" alt="Achievements">
+                </div>
+                <p>Countless of online movie dates pati food dates, nagagawa pa rin natin kahit may distance. 💕</p>
+                <button class="navigation-button" id="show-valentine-screen">See What's Next ❤️</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. Valentine Screen -->
+    <div class="screen" id="valentine-screen">
+        <div class="journey-map">
+            <h2 class="final-question">Will you be my Valentine again?</h2>
+            <div class="valentine-buttons">
+                <button class="navigation-button yes-btn">Yes! Eternally ❤️</button>
+                <button class="navigation-button no-btn">Maybe... 😏</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize screens on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active-screen');
+            });
+            // Show only opening screen
+            document.getElementById('opening-screen').classList.add('active-screen');
+        });
+
+        function startJourney() {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active-screen');
+            });
+            document.getElementById('journey-screen').classList.add('active-screen');
+            document.getElementById('journey-screen').scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('.navigation-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if(e.target.id === 'show-valentine-screen') {
+                    document.querySelectorAll('.screen').forEach(screen => {
+                        screen.classList.remove('active-screen');
+                    });
+                    document.getElementById('valentine-screen').classList.add('active-screen');
+                    document.getElementById('valentine-screen').scrollTo(0, 0);
+                    return;
+                }
+
+                const currentStop = e.target.closest('.journey-stop');
+                const nextId = e.target.dataset.next;
+                
+                if(currentStop && nextId) {
+                    currentStop.classList.remove('active');
+                    setTimeout(() => {
+                        currentStop.style.display = 'none';
+                        const nextStop = document.getElementById(nextId);
+                        if(nextStop) {
+                            nextStop.style.display = 'block';
+                            setTimeout(() => {
+                                nextStop.classList.add('active');
+                                nextStop.scrollIntoView({ behavior: 'smooth' });
+                            }, 50);
+                        }
+                    }, 500);
+                }
+            });
+        });
+
+        document.querySelector('.yes-btn').addEventListener('click', () => {
+            const colors = ['#ff69b4', '#ff1493', '#c71585'];
+            for(let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 12px;
+                    height: 12px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    left: ${Math.random() * 100}vw;
+                    top: -10px;
+                    animation: fall ${Math.random() * 3 + 2}s linear infinite;
+                    border-radius: 50%;
+                `;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+            alert("Thank you, baby. Mahal na mahal kita. 💖");
+        });
+
+        document.querySelector('.no-btn').addEventListener('mouseover', function() {
+            this.style.transform = 'rotate(5deg) scale(1.1)';
+            this.textContent = "Bawal yan 😘";
+        });
+
+        document.querySelector('.no-btn').addEventListener('mouseout', function() {
+            this.style.transform = 'none';
+            this.textContent = "No... 😏";
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `@keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }`;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
